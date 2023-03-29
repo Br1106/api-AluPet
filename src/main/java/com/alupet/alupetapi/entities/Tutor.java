@@ -7,6 +7,7 @@ import java.util.Objects;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,9 +15,10 @@ import jakarta.persistence.Table;
 public class Tutor implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	@jakarta.persistence.Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
 	private String nome;
 	private String telefone;
 	private String cidade;
@@ -25,7 +27,7 @@ public class Tutor implements Serializable{
 	public Tutor () {}
 	
 	public Tutor(String nome, String telefone, String cidade, String nomePet) {
-		super();
+	
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cidade = cidade;
