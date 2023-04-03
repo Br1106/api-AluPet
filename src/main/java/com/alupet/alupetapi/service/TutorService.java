@@ -56,6 +56,5 @@ public class TutorService {
 		tutorAtualizado.setNome(tutorSubstituido.getNome());
 		tutorAtualizado.setTelefone(tutorSubstituido.getTelefone());
 		tutorAtualizado.setCidade(tutorSubstituido.getCidade());
-		tutorAtualizado.setNomePet(tutorSubstituido.getNomePet());
 	}
 }
