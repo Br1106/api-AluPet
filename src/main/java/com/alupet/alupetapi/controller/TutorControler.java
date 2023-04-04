@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.alupet.alupetapi.controller.exceptions.ResourceExceptionHandler;
 import com.alupet.alupetapi.dto.UsuarioDTO;
 import com.alupet.alupetapi.entities.Tutor;
 import com.alupet.alupetapi.service.TutorService;
@@ -33,6 +34,7 @@ public class TutorControler {
 	@GetMapping
 	public ResponseEntity<List<Tutor>> buscarTodos(){
 		List <Tutor> list = service.buscarTodos();
+
 		return ResponseEntity.ok().body(list);
 	}
 	@GetMapping( value = "/{id}")

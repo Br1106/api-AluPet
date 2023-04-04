@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.alupet.alupetapi.entities.Pet;
 import com.alupet.alupetapi.entities.Tutor;
 import com.alupet.alupetapi.repository.TutorRepository;
 import com.alupet.alupetapi.service.exceptions.ResourceNotFoundException;
@@ -56,5 +57,10 @@ public class TutorService {
 		tutorAtualizado.setNome(tutorSubstituido.getNome());
 		tutorAtualizado.setTelefone(tutorSubstituido.getTelefone());
 		tutorAtualizado.setCidade(tutorSubstituido.getCidade());
+	}
+/*----------------------------------------------------------------------------*/
+	public boolean adotar (Pet pet) {
+		
+		return false;
 	}
 }

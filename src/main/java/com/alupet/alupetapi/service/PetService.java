@@ -57,8 +57,5 @@ public class PetService {
 		petAtualizado.setPersonalidade(petSubstituido.getPersonalidade());
 		petAtualizado.setAbrigo(petSubstituido.getAbrigo());
 	}
-/*----------------------------------------------------------------------------*/
-	public boolean adotar () {
-		return false;
-	}
+
 }
