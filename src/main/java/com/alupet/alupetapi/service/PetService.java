@@ -38,7 +38,6 @@ public class PetService {
 			throw new ResourceNotFoundException(id);
 		}
 	}
-	/*------------------------------------------------------------------------------------------	
 	public Pet atualizar(Long id, Pet obj) {
 		try {
 			Pet petAtualizado = repository.getReferenceById(id);
@@ -54,7 +53,12 @@ public class PetService {
 	
 	private void atualizarPet(Pet petAtualizado, Pet petSubstituido ) {
 		petAtualizado.setNome(petSubstituido.getNome());
-		petAtualizado.setTelefone(petSubstituido.getTelefone());
-		petAtualizado.setCidade(petSubstituido.getCidade());
-	}*/
+		petAtualizado.setIdade(petSubstituido.getIdade());
+		petAtualizado.setPersonalidade(petSubstituido.getPersonalidade());
+		petAtualizado.setAbrigo(petSubstituido.getAbrigo());
+	}
+/*----------------------------------------------------------------------------*/
+	public boolean adotar () {
+		return false;
+	}
 }

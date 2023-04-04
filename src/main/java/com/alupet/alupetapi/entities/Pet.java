@@ -2,7 +2,6 @@ package com.alupet.alupetapi.entities;
 
 import java.io.Serializable;
 
-import com.alupet.alupetapi.enums.Porte;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -19,45 +18,41 @@ import lombok.EqualsAndHashCode;
 @Table(name = "tb_pet")
 
 @EqualsAndHashCode(of = "id")
-public class Pet implements Serializable{
+public class Pet implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private Integer idade;
 	private String personalidade;
+	private Boolean adotado = false; // init --> não adotado
 
-	private Porte porte;
-	
-	//Necessário para rodar a API
+	// Necessário para rodar a API
 	@JsonIgnore
-	//Muitos p/ 1
+	// Muitos p/ 1
 	@ManyToOne
-	@JoinColumn(name = "dono_id")//Coluna contendo o Id do dono do Pet
-	private Tutor dono;
+	@JoinColumn(name = "abrigo_id") // Coluna contendo o nome do Responsável do Pet
+	private Abrigo abrigo;
 
-	public Pet() {}
+	public Pet() {
+	}
 
-	
-	public Pet(String nome, Integer idade, String personalidade, Porte porte, Tutor dono) {
+	public Pet(String nome, Integer idade, String personalidade, Abrigo abrigo) {
 		this.nome = nome;
 		this.idade = idade;
 		this.personalidade = personalidade;
-		this.porte = porte;
-		this.dono = dono;
+		this.abrigo = abrigo;
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getNome() {
 		return nome;
@@ -83,20 +78,19 @@ public class Pet implements Serializable{
 		this.personalidade = personalidade;
 	}
 
-	public Porte getPorte() {
-		return porte;
+	public Abrigo getAbrigo() {
+		return abrigo;
 	}
 
-	public void setPorte(Porte porte) {
-		this.porte = porte;
+	public void setAbrigo(Abrigo abrigo) {
+		this.abrigo = abrigo;
 	}
 
-	public Tutor getDono() {
-		return dono;
+	public Boolean getAdotado() {
+		return adotado;
 	}
 
-	public void setDono(Tutor dono) {
-		this.dono = dono;
+	public void setAdotado(Boolean adotado) {
+		this.adotado = adotado;
 	}
-	
 }

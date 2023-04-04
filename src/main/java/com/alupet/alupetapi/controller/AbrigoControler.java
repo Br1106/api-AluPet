@@ -16,33 +16,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.alupet.alupetapi.dto.UsuarioDTO;
-import com.alupet.alupetapi.entities.Tutor;
-import com.alupet.alupetapi.service.TutorService;
+import com.alupet.alupetapi.dto.AbrigoDTO;
+import com.alupet.alupetapi.entities.Abrigo;
+import com.alupet.alupetapi.service.AbrigoService;
 
 import jakarta.validation.Valid;
 
 
 @RestController
-@RequestMapping(value = "/tutores")
-public class TutorControler {
+@RequestMapping(value = "/abrigos")
+public class AbrigoControler {
 
 	@Autowired
-	private TutorService service;
+	private AbrigoService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Tutor>> buscarTodos(){
-		List <Tutor> list = service.buscarTodos();
+	public ResponseEntity<List<Abrigo>> buscarTodos(){
+		List <Abrigo> list = service.buscarTodos();
 		return ResponseEntity.ok().body(list);
 	}
 	@GetMapping( value = "/{id}")
-	public ResponseEntity<Tutor> buscarPorId(@PathVariable Long id){
-		Tutor obj = service.buscarPorId(id);
+	public ResponseEntity<Abrigo> buscarPorId(@PathVariable Long id){
+		Abrigo obj = service.buscarPorId(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	@PostMapping(name = "/cadastrar")
-	public ResponseEntity<Tutor> cadastrar (@RequestBody @Valid UsuarioDTO objDTO){
-		Tutor obj = converterDTO(objDTO);
+	public ResponseEntity<Abrigo> cadastrar (@RequestBody @Valid AbrigoDTO objDTO){
+		Abrigo obj = converterDTO(objDTO);
 		obj = service.inserir(obj);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -50,19 +50,19 @@ public class TutorControler {
 		return ResponseEntity.created(uri).body(obj);
 	}
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Tutor> atualizar (@PathVariable Long id,@RequestBody @Valid UsuarioDTO objDTO){
-		Tutor obj = converterDTO(objDTO);
+	public ResponseEntity<Abrigo> atualizar (@PathVariable Long id,@RequestBody @Valid AbrigoDTO objDTO){
+		Abrigo obj = converterDTO(objDTO);
 		obj = service.atualizar(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Tutor> deletar (@PathVariable Long id){
+	public ResponseEntity<Abrigo> deletar (@PathVariable Long id){
 		service.deletar(id);
 		return ResponseEntity.noContent().build();
 	}
 //-------------------------------------------------------------------------------------------------------
-	private Tutor converterDTO(UsuarioDTO objDTO) {
-		Tutor obj = new Tutor ();
+	private Abrigo converterDTO(AbrigoDTO objDTO) {
+		Abrigo obj = new Abrigo ();
 		BeanUtils.copyProperties(objDTO, obj);
 		return obj;
 	}
