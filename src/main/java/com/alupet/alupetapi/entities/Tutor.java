@@ -2,16 +2,18 @@ package com.alupet.alupetapi.entities;
 
 import java.io.Serializable;
 
+import com.alupet.alupetapi.dto.UsuarioDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "tb_tutor")
-
 @EqualsAndHashCode(of = "id")
 public class Tutor implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -29,10 +31,20 @@ public class Tutor implements Serializable{
 	public Tutor() {
 		
 	}
-	public Tutor(String nome, String email, String senha) {
+	public Tutor(Long id, String nome, String email, String senha, String telefone, String cidade, String descricao) {
+		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
+		this.telefone = telefone;
+		this.cidade = cidade;
+		this.descricao = descricao;
+	}
+
+	public Tutor(UsuarioDTO objDTO) {
+		this.nome = objDTO.getNome();
+		this.email = objDTO.getEmail();
+		this.senha = objDTO.getSenha();
 	}
 	public Long getId() {
 		return id;

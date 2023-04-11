@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.alupet.alupetapi.dto.AbrigoDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
@@ -27,7 +28,7 @@ public class Abrigo implements Serializable{
 	private String telefone;
 	private String cidade;
 	
-	//Relação entre dono e pets--> 1 p/ Muitos
+	//Relação entre abrigo e pets--> 1 p/ Muitos
 	@OneToMany(mappedBy = "abrigo")
 	private List<Pet> pets = new ArrayList<>();
 	
@@ -37,7 +38,11 @@ public class Abrigo implements Serializable{
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cidade = cidade;
-		
+	}
+	public Abrigo(AbrigoDTO objDTO) {
+		this.nome = objDTO.getNome();
+		this.telefone = objDTO.getTelefone();
+		this.cidade = objDTO.getCidade();
 	}
 
 	public long getId() {

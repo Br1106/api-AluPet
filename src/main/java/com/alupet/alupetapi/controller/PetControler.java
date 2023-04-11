@@ -41,9 +41,9 @@ public class PetControler {
 		Pet obj = service.buscarPorId(id);
 		return ResponseEntity.ok().body(obj);
 	}
-	@PostMapping(name = "/cadastrar")
+	@PostMapping
 	public ResponseEntity<Pet> cadastrar (@RequestBody @Valid PetDTO objDTO){
-		Pet obj = converterDTO(objDTO);
+		Pet obj = new Pet(objDTO);
 		obj = service.inserir(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(obj.getId()).toUri();
@@ -51,7 +51,7 @@ public class PetControler {
 	}
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Pet> atualizar (@PathVariable Long id,@RequestBody @Valid PetDTO objDTO){
-		Pet obj = converterDTO(objDTO);
+		Pet obj = new Pet(objDTO);
 		obj = service.atualizar(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
@@ -61,10 +61,4 @@ public class PetControler {
 		return ResponseEntity.noContent().build();
 	}
 //------------------------------------------------------------------------------------
-	private Pet converterDTO(PetDTO objDTO) {
-		Pet obj = new Pet();
-		BeanUtils.copyProperties(objDTO, obj);
-		return obj;	
-	}
-	
 }

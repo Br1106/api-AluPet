@@ -2,6 +2,7 @@ package com.alupet.alupetapi.entities;
 
 import java.io.Serializable;
 
+import com.alupet.alupetapi.dto.PetDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -33,6 +34,7 @@ public class Pet implements Serializable {
 	@JsonIgnore
 	// Muitos p/ 1
 	@ManyToOne
+	
 	@JoinColumn(name = "abrigo_id") // Coluna contendo o nome do Responsável do Pet
 	private Abrigo abrigo;
 
@@ -44,6 +46,12 @@ public class Pet implements Serializable {
 		this.idade = idade;
 		this.personalidade = personalidade;
 		this.abrigo = abrigo;
+	}
+	public Pet(PetDTO objDTO) {
+		this.nome = objDTO.getNome();
+		this.idade = objDTO.getIdade();
+		this.personalidade = objDTO.getPersonalidade();
+		this.abrigo = objDTO.getAbrigo();
 	}
 
 	public Long getId() {

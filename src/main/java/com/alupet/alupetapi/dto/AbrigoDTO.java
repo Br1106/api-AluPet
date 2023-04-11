@@ -9,6 +9,7 @@ import com.alupet.alupetapi.entities.Pet;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.Getter;
 
@@ -25,7 +26,33 @@ public class AbrigoDTO {
 	@NotBlank
 	private String cidade;
 	
-	@NotEmpty
 	private List<Pet> pets = new ArrayList<>();
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public List<Pet> getPets() {
+		return pets;
+	}
 }

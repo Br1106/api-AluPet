@@ -40,9 +40,10 @@ public class AbrigoControler {
 		Abrigo obj = service.buscarPorId(id);
 		return ResponseEntity.ok().body(obj);
 	}
-	@PostMapping(name = "/cadastrar")
+	@PostMapping
 	public ResponseEntity<Abrigo> cadastrar (@RequestBody @Valid AbrigoDTO objDTO){
-		Abrigo obj = converterDTO(objDTO);
+		Abrigo obj = new Abrigo(objDTO);
+		obj.getPets().addAll(objDTO.getPets()) ;
 		obj = service.inserir(obj);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -51,7 +52,7 @@ public class AbrigoControler {
 	}
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Abrigo> atualizar (@PathVariable Long id,@RequestBody @Valid AbrigoDTO objDTO){
-		Abrigo obj = converterDTO(objDTO);
+		Abrigo obj = new Abrigo(objDTO);
 		obj = service.atualizar(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
@@ -61,9 +62,4 @@ public class AbrigoControler {
 		return ResponseEntity.noContent().build();
 	}
 //-------------------------------------------------------------------------------------------------------
-	private Abrigo converterDTO(AbrigoDTO objDTO) {
-		Abrigo obj = new Abrigo ();
-		BeanUtils.copyProperties(objDTO, obj);
-		return obj;
-	}
 }

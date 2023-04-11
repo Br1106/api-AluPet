@@ -42,9 +42,9 @@ public class TutorControler {
 		Tutor obj = service.buscarPorId(id);
 		return ResponseEntity.ok().body(obj);
 	}
-	@PostMapping(name = "/cadastrar")
-	public ResponseEntity<Tutor> cadastrar (@RequestBody @Valid UsuarioDTO objDTO){
-		Tutor obj = converterDTO(objDTO);
+	@PostMapping
+		public ResponseEntity<Tutor> cadastrar (@RequestBody @Valid UsuarioDTO objDTO){
+		Tutor obj = new Tutor(objDTO);
 		obj = service.inserir(obj);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -53,7 +53,7 @@ public class TutorControler {
 	}
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Tutor> atualizar (@PathVariable Long id,@RequestBody @Valid UsuarioDTO objDTO){
-		Tutor obj = converterDTO(objDTO);
+		Tutor obj = new Tutor(objDTO);
 		obj = service.atualizar(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
@@ -63,9 +63,4 @@ public class TutorControler {
 		return ResponseEntity.noContent().build();
 	}
 //-------------------------------------------------------------------------------------------------------
-	private Tutor converterDTO(UsuarioDTO objDTO) {
-		Tutor obj = new Tutor ();
-		BeanUtils.copyProperties(objDTO, obj);
-		return obj;
-	}
 }

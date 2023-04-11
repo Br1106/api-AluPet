@@ -31,9 +31,9 @@ public class TestConfig implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		//Instancia manual dos Objetos e Tbm seus relacionamentos para teste
 		
-		Tutor t1 = new Tutor("Cleber Danilo", "clbdanilo@gmail.com","123456789");
-		Tutor t2 = new Tutor("Melina da Silva", "mlnDaSilva@gmail.com","123456789");
-		Tutor t3 = new Tutor("Ruanzito Oliveira", "ruandograu@gmail.com","123456789");
+		Tutor t1 = new Tutor(null,"Cleber Danilo", "clbdanilo@gmail.com","123456789",null,null,null);
+		Tutor t2 = new Tutor(null,"Melina da Silva", "mlnDaSilva@gmail.com","123456789",null,null,null);
+		Tutor t3 = new Tutor(null,"Ruanzito Oliveira", "ruandograu@gmail.com","123456789",null,null,null);
 
 		Abrigo a1 = new Abrigo("Recanto Lírio dos Vales", "14151216", "Jabaquara");
 		Abrigo a2 = new Abrigo("Cachorro feliz", "14151216", "Jabaquara");

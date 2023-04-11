@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.alupet.alupetapi.entities.Pet;
 import com.alupet.alupetapi.entities.Tutor;
 import com.alupet.alupetapi.repository.TutorRepository;
+import com.alupet.alupetapi.service.exceptions.DatabaseException;
 import com.alupet.alupetapi.service.exceptions.ResourceNotFoundException;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -29,8 +30,22 @@ public class TutorService {
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	public Tutor inserir(Tutor obj) {
+		
 		return repository.save(obj);
+		/*if(validarEmail(obj.getEmail()) == null) {
+			throw new DatabaseException("E-mail já cadastrado");
+		}
+		else {
+			return repository.save(obj);
+		}*/
 	}
+/*----------------------------------------------------------------------------*/
+//  
+	/*Verifica se existe um email cadastrado e se houver, devolve o parâmetro como null	
+	public Tutor validarEmail (String email) {		
+		return  repository.buscarPorEmail(email);
+	}*/
+/*----------------------------------------------------------------------------*/
 	public Tutor atualizar(Long id, Tutor obj) {
 		try {
 			Tutor tutorAtualizado = repository.getReferenceById(id);
@@ -58,7 +73,7 @@ public class TutorService {
 		tutorAtualizado.setTelefone(tutorSubstituido.getTelefone());
 		tutorAtualizado.setCidade(tutorSubstituido.getCidade());
 	}
-/*----------------------------------------------------------------------------*/
+	
 	public boolean adotar (Pet pet) {
 		
 		return false;
